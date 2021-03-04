@@ -3,8 +3,8 @@ import TimelineItem from './TimelineItem';
 import { groupBy } from 'lodash';
 
 const Timeline = () => {
-  let numberOfColor = -1;
   const colors = ['#845ec2', '#ffc75f', '#f9f871', '#ff5e78'];
+  let numberOfColor = 0;
 
   const dataByYear = groupBy(data, (event) =>
     new Date(event.date).getFullYear()
@@ -12,14 +12,13 @@ const Timeline = () => {
 
   const timelineItems = Object.entries(dataByYear).map(
     ([year, events], index) => {
-      ++numberOfColor;
       if (numberOfColor === colors.length) numberOfColor = 0;
 
       return (
         <TimelineItem
           year={year}
           events={events}
-          color={colors[numberOfColor]}
+          color={colors[numberOfColor++]}
           index={index}
           key={index}
         />

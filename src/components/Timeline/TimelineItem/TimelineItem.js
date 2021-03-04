@@ -16,9 +16,18 @@ const TimelineItem = ({ year, events, color, index }) => {
     const newDate = new Intl.DateTimeFormat('pl').format(date);
 
     return (
-      <div className={`timeline-item--eventsInfo ${direction}`} key={index}>
+      <div
+        className={`timeline-item--eventsInfo ${direction} ${
+          showEvents ? 'active' : ''
+        }`}
+        key={index}
+      >
         <div className={`timeline-item--content ${direction}`}>
-          <div className={`timeline-item--event`}>
+          <div
+            className={`timeline-item--event ${direction} ${
+              showEvents ? 'active' : ''
+            }`}
+          >
             <h4>{event.title}</h4>
             <time>{newDate}</time>
             <p>{event.description}</p>
@@ -58,7 +67,7 @@ const TimelineItem = ({ year, events, color, index }) => {
         </div>
       </div>
 
-      {events.length > 0 && showEvents && eventsInfo}
+      {events.length > 0 && eventsInfo}
     </>
   );
 };

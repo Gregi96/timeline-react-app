@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  min-height: 100vh;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  max-width: 340px;
+  min-width: 200px;
+}
+
+.timeline-item {
+  height: 70px;
+  width: calc(50% + 7.5px);
+  position: relative;
+}
+
+.timeline-item__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.timeline-item__content::after {
+  content: '';
+  height: 1.5px;
+  right: 7.5px;
+  position: absolute;
+  left: 0px;
+  bottom: 50%;
+  transform: translateY(calc(-50% + 1.5px));
+  background-color: black;
+}
+
+.timeline-item__icon {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.timeline-item__shortLine {
+  margin-left: auto;
+  width: 15px;
+  height: 100%;
+  position: relative;
+}
+
+.timeline-item__shortLine__circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.timeline-item__time {
+  position: absolute;
+  top: 50%;
+  right: -60px;
+  transform: translateY(-50%);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.timeline-item__info {
+  position: absolute;
+  background-color: #cfe2ff;
+  color: #084298;
+  width: 25px;
+  height: 25px;
+  top: -10px;
+  left: -18px;
+  text-align: center;
+  vertical-align: center;
+  font-size: 15px;
+  border-radius: 50%;
+  font-weight: bold;
+  border: 1px solid #084298;
+}
+
+.timeline-item.right {
+  align-self: flex-end;
+}
+
+.timeline-item.right .timeline-item__content {
+  flex-direction: row-reverse;
+}
+
+.timeline-item.right .timeline-item__content::after {
+  content: '';
+  left: 7.5px;
+}
+
+.timeline-item.right .timeline-item__shortLine {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.timeline-item.right .timeline-item__time {
+  left: -60px;
+}
+
+.timeline-item.right .timeline-item__info {
+  top: -10px;
+  left: auto;
+  right: -18px;
+}
+
+/* create animations */
+
+.fas,
+.far,
+.fab {
+  color: white;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.timeline-item__icon:hover .fas,
+.timeline-item__icon:hover .fab,
+.timeline-item__icon:hover .far {
+  font-size: 25px;
+}
+
+.timeline__title {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.timeline__dots {
+  position: relative;
+}
+
+.timeline__dots::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  background-color: white;
+  animation: dots 3s steps(3, start) infinite;
+}
+
+.timeline-item__icon {
+  box-shadow: 0 0 0 0 red;
+  animation: pulse 2s infinite;
+}
+
+.timeline-item:nth-child(even) .timeline-item__icon {
+  box-shadow: 0 0 0 0 orange;
+  animation: pulseRight 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 red;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulseRight {
+  0% {
+    box-shadow: 0 0 0 0 orange;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes dots {
+  0% {
+  }
+
+  to {
+    right: -100%;
+  }
+}
+
+/* Events */
+
+.timeline-item--eventsInfo {
+  display: block;
+  min-height: 70px;
+  width: calc(50% + 7.5px);
+  transition: 0.3s;
+}
+
+.timeline-item--content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.timeline-item--event {
+  background-color: rgb(238, 238, 238);
+  padding: 5px;
+  margin: 15px 0;
+  border-radius: 4px;
+  text-align: center;
+  width: 80%;
+}
+
+.timeline-item--shortLine {
+  height: auto;
+  width: 15px;
+  margin-left: auto;
+}
+
+.timeline-item--eventsInfo.right {
+  align-self: flex-end;
+}
+
+.timeline-item--content.right {
+  flex-direction: row-reverse;
+}
+
+.timeline-item--shortLine.right {
+  margin-left: 0;
+  margin-right: auto;
+}
